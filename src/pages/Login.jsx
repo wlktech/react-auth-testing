@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [data, setData] = useState([]);
+    const navigate = useNavigate();
 
     const handleLogin = (e) =>{
         e.preventDefault();
@@ -30,6 +32,8 @@ const Login = () => {
             setData(data);
             if (data.token) {
               localStorage.setItem('token', data.token); // Save token to localStorage
+              alert("Logged In Successfully.");
+              navigate('/blogs');
             } else {
               throw new Error('Token not found in response');
             }

@@ -1,8 +1,16 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 export default function Navbar() {
+    let navigate = useNavigate();
+
+    let handleLogout = (e) => {
+        e.preventDefault();
+        localStorage.removeItem('token');
+        alert("Logged Out Successfully.");
+        navigate('/login');
+    }
   return (
     <div>
         <nav className="navbar navbar-expand-lg bg-secondary navbar-dark shadow">
@@ -47,11 +55,12 @@ export default function Navbar() {
                             </NavLink>
                         </li>
 
-                        {/* <li className="nav-item">
-                            <NavLink to={'/api'} className="nav-link">
-                                API Blog
-                            </NavLink>
-                        </li> */}
+                        <li className="nav-item">
+                            <button className="nav-link" onClick={handleLogout}>Logout</button>
+                            {/* <NavLink to={'/logout'} className="nav-link">
+                                Logout
+                            </NavLink> */}
+                        </li>
                     </ul>
                 </div>
             </div>
