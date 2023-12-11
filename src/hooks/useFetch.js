@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const useFetch = (url) => {
   
@@ -6,6 +7,7 @@ const useFetch = (url) => {
     let [page, setPage] = useState([]);
     let [loading, setLoading] = useState(false);
     let [error, setError] = useState(null);
+    let navigate = useNavigate();
 
     useEffect(()=>{
         let abortController = new AbortController();
@@ -35,6 +37,7 @@ const useFetch = (url) => {
         })
         .catch(e =>{
             setError(e.message)
+            navigate('/login');
         })
 
         //cleanup function

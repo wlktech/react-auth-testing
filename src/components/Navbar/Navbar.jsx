@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 
 export default function Navbar() {
     let navigate = useNavigate();
+    let auth = localStorage.getItem('token');
 
     let handleLogout = (e) => {
         e.preventDefault();
@@ -50,18 +51,16 @@ export default function Navbar() {
                                 Blogs
                             </NavLink>
                         </li>
-                        <li className="nav-item">
+
+                        {!auth && <li className="nav-item">
                             <NavLink to={'/login'} className="nav-link fw-bold">
                                 Login
                             </NavLink>
-                        </li>
+                        </li>}
 
-                        <li className="nav-item">
+                        {auth && <li className="nav-item">
                             <button className="nav-link" onClick={handleLogout}>Logout</button>
-                            {/* <NavLink to={'/logout'} className="nav-link">
-                                Logout
-                            </NavLink> */}
-                        </li>
+                        </li>}
                     </ul>
                 </div>
             </div>

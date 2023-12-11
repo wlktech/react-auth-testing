@@ -32,7 +32,7 @@ const Login = () => {
             setData(data);
             if (data.token) {
               localStorage.setItem('token', data.token); // Save token to localStorage
-              alert("Logged In Successfully.");
+              // alert("Logged In Successfully.");
               navigate('/blogs');
             } else {
               throw new Error('Token not found in response');
